@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Market Analyzer</title>
+  <meta name="description" content="An interface for modeling the stock market.">
+  <meta name="author" content="Daniel Etaat">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="heading">
+            Market Analyzer
+        </div>
+        <div class="settings">
+
+            <div class="proud">Build a Model</div>
+
+            <form action="">
+
+                <label for="symb">Choose a Symbol:</label>
+                <select name="symb" id="symb">
+                    <option value="volvo">BTC</option>
+                </select><br>
+
+                Choose Input Data:
+                <input type="checkbox" id="price" name="price" value="Price">
+                <label for="price">Price</label>
+                <input type="checkbox" id="volume" name="volume" value="Volume">
+                <label for="volume">Volume</label><br>
+
+                <label for="symb">Choose a Symbol:</label>
+                <select name="symb" id="symb">
+                    <option value="volvo">BTC</option>
+                </select><br>
+
+            </form>
+        </div>
+        <div class="data">
+            b
+        </div>
+    </div>
+
+</body>
+
+</html>
