@@ -25,23 +25,36 @@
 
             <div class="proud">Build a Model</div>
 
-            <form action="">
+            <form class="settings-form" action="">
 
-                <label for="symb">Choose a Symbol:</label>
-                <select name="symb" id="symb">
-                    <option value="volvo">BTC</option>
-                </select><br>
+                <div class="setting">
+                    <label class="label" for="symb">Choose a Symbol to Analyze:</label>
+                    <select name="symb" id="symb">
+                        <option value="BTC">BTC</option>
+                    </select>
+                </div>
 
-                Choose Input Data:
-                <input type="checkbox" id="price" name="price" value="Price">
-                <label for="price">Price</label>
-                <input type="checkbox" id="volume" name="volume" value="Volume">
-                <label for="volume">Volume</label><br>
+                <div class="setting">
+                    <span class="label">Input(s) to the Model:</span>
+                    <input type="checkbox" id="price" name="price" onchange="newSetting(this);">
+                    <label for="price">Price</label>
+                    <input type="checkbox" id="volume" name="volume" onchange="newSetting(this);">
+                    <label for="volume">Volume</label>
+                </div>
 
-                <label for="symb">Choose a Symbol:</label>
-                <select name="symb" id="symb">
-                    <option value="volvo">BTC</option>
-                </select><br>
+                <div class="setting hidden" id="price-setting">
+                    <label for="num-price">○ Input the past </label>
+                    <input name="num-price" id="num-price" type="text" value="0"> price values into the model.
+                </div>
+
+                <div class="setting hidden" id="volume-setting">
+                    <label for="num-volume">○ Input the past </label>
+                    <input name="num-volume" id="num-volume" type="text" value="0"> volume values into the model.
+                </div>
+
+                <div class="setting">
+                    <input type="submit" value="Build">
+                </div>
 
             </form>
         </div>
@@ -50,6 +63,7 @@
         </div>
     </div>
 
-</body>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 
+</body>
 </html>

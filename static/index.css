@@ -3,6 +3,10 @@
     color: rgb(9, 56, 0);
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     background: #fbfbfb;
 }
@@ -10,6 +14,7 @@ body {
 .content {
     display: grid;
     grid-template-columns: 50% 50%;
+    margin: 10px;
 }
 
 .heading {
@@ -21,19 +26,54 @@ body {
 }
 
 .settings {
+    background: white;
     grid-column: span 1;
-    border-right: 1px solid;
-    padding: 10px;
-    min-height: 100px;
+    padding: 20px 40px;
 }
 
 .data {
     grid-column: span 1;
-    padding: 10px;
+    padding: 20px 40px;
 }
 
 .proud {
-    font-size: 30px;
+    font-size: 35px;
     font-family: Impact;
     padding: 10px 0;
+}
+
+.settings-form {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.setting {
+    grid-column: span 1;
+    font-size: 20px;
+    padding: 5px 0;
+}
+
+.setting > * {
+    font-size: 20px;
+}
+
+.setting > input[type="text"] {
+    text-align: center;
+    width: 50px;
+    margin: 0 2px;
+}
+
+.setting > input[type="submit"] {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid rgb(9, 56, 0);
+    border-radius: 5px;
+    transition: all 0.25s;
+}
+
+.setting > input[type="submit"]:hover {
+    background: rgb(9, 56, 0);
+    color: white;
 }
