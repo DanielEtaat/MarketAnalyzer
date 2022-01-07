@@ -11,7 +11,7 @@ def download(symb, interval):
         if symb == _symb and interval == _interval:
             data = pd.read_pickle(f"data/{symb}_{interval}.pkl")
             stop = data.iloc[-1].name.date()
-            if (datetime.now().date() - stop).days == 0:
+            if (datetime.now().date() - stop).days > 0:
                 data = pd.concat([data, yf.download(symb, start=stop, interval=interval)])
             break
     else:
