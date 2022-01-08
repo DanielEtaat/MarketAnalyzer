@@ -30,7 +30,8 @@
                 <div class="setting">
                     <label class="label" for="symb">Choose a Symbol to Analyze:</label>
                     <select name="symb" id="symb">
-                        <option value="BTC">BTC</option>
+                        <option value="MSFT">MSFT</option>
+                        <option value="AAPL">AAPL</option>
                     </select>
                 </div>
 
@@ -43,12 +44,12 @@
                 </div>
 
                 <div class="setting hidden" id="price-setting">
-                    <label for="num-price">○ Input the past </label>
+                    <label for="num-price">○ Input </label>
                     <input name="num-price" id="num-price" type="text" value="0"> price values into the model.
                 </div>
 
                 <div class="setting hidden" id="volume-setting">
-                    <label for="num-volume">○ Input the past </label>
+                    <label for="num-volume">○ Input </label>
                     <input name="num-volume" id="num-volume" type="text" value="0"> volume values into the model.
                 </div>
 
@@ -58,12 +59,40 @@
 
             </form>
         </div>
-        <div class="data">
-            {{} symb }}
+        <div class="data" id="data">
         </div>
     </div>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
+    <script>
+        nv.addGraph(function() {
+            let chart = nv.models.lineWithFocusChart();
+            chart.xAxis.axisLabel("Time (days)");
+            chart.yAxis.axisLabel("Price (dollars)").tickFormat(d3.format('.02f'));;
+
+            let raw = JSON.parse("{{ data }}");
+            let symb = "{{ symb }}";
+            let values = [];
+            for (let i = 0; i < raw.length; i++) {
+                values.push({x: i, y: raw[i]})
+            }
+
+            data = [{
+                area: true,
+                values: values,
+                key: symb,
+                color: "#ff7f0e",
+                strokeWidth: 4,
+            }]
+
+            d3.select("#data").append("svg").datum(data).call(chart);
+            nv.utils.windowResize(chart.update);
+            return chart;
+        });
+    </script>
 
 </body>
 </html>

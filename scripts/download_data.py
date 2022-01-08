@@ -5,6 +5,15 @@ from datetime import datetime
 
 
 def download(symb, interval):
+    """Efficiently downloads market data for a given symbol from yahoo.
+
+    :param symb: A ticker symbol used to identify a particular stock.
+    :type symb: str
+    :param interval: The interval over which data should be retrieved (1s, 1m, 1h, 1mo, 1d).
+    :type interval: str
+    :return: The requested data.
+    :rtype: pandas.core.frame.DataFrame
+    """
     downloaded = [fname[:-4] for fname in os.listdir("data") if fname[-4:] == ".pkl"]
     for fname in downloaded:
         _symb, _interval = fname.split("_")
@@ -20,3 +29,4 @@ def download(symb, interval):
     data = data.dropna()
     data.to_pickle(f"data/{symb}_{interval}.pkl")
     return data
+

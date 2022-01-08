@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from scripts.download_data import download
 
 app = Flask(__name__)
 
@@ -10,7 +11,13 @@ def index():
 
     if request.method == "POST":
         settings = request.form
-        return render_template('index.html', name="home")
+        if settings['symb'] != 'None':
+            data = download(settings['symb'], "1d")["Open"].to_list()
+            context = {
+                "data": data,
+                "symb": settings['symb']
+            }
+            return render_template('index.html', name="home", **context)
     return render_template('index.html', name="home") 
 
 if __name__ == "__main__":

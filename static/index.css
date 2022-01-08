@@ -33,6 +33,7 @@ body {
 
 .data {
     grid-column: span 1;
+    min-height: 400px;
     padding: 20px 40px;
 }
 
